@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐾 Control de Ventas - Peluditos 🐾</title>
+    <title>🐾 Catálogo y Ventas - Peluditos 🐾</title>
     <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
         body { font-family: 'Quicksand', sans-serif; }
     </style>
 </head>
-<body class="bg-pink-100 min-h-screen p-3 sm:p-4 text-gray-800 pb-16">
+<body class="bg-pink-100 min-h-screen p-3 sm:p-4 text-gray-800 pb-20">
 
     <div class="max-w-md mx-auto">
         <!-- Encabezado Rosa -->
-        <header class="text-center mb-5 bg-pink-500 text-white p-4 rounded-3xl shadow-md border-2 border-pink-300">
-            <h1 class="text-2xl font-bold">🐾 Control de Ventas 🐾</h1>
-            <p class="text-xs text-pink-100 mt-1">Alimentos, Accesorios y Juguetes</p>
+        <header class="text-center mb-4 bg-pink-500 text-white p-4 rounded-3xl shadow-md border-2 border-pink-300">
+            <h1 class="text-2xl font-bold">🐾 Peluditos & Cía 🐾</h1>
+            <p class="text-xs text-pink-100 mt-1">Catálogo y Control de Ventas</p>
         </header>
 
         <!-- Tarjeta de Tasa del Dólar -->
@@ -31,35 +31,23 @@
             </div>
         </div>
 
-        <!-- Sección de Armar Ticket / Carrito -->
+        <!-- Sección de Catálogo Visual / Agregar al Carrito -->
         <div class="bg-white rounded-3xl shadow-md p-4 mb-4 border-2 border-pink-300">
             <h2 class="text-lg font-bold text-pink-700 mb-3 flex items-center gap-2">
-                <span>🛒</span> Registrar Compra
+                <span>🛍️</span> Catálogo de Productos
             </h2>
-            
-            <div class="mb-3">
-                <label class="block text-sm font-semibold text-gray-600 mb-1">Seleccionar Producto:</label>
-                <select id="productoSelect" onchange="actualizarUnidadMedida()" class="w-full px-3 py-2 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 bg-pink-50/50 text-gray-700 font-semibold">
-                    <option value="">-- Elige un producto --</option>
-                </select>
+            <p class="text-xs text-gray-500 mb-3">Toca un producto para agregarlo o ajustar su cantidad:</p>
+
+            <!-- Cuadrícula Estilo Catálogo -->
+            <div id="catalogoGrid" class="grid grid-cols-2 gap-3 max-h-72 overflow-y-auto pr-1 mb-4">
+                <!-- Se llena con JavaScript -->
             </div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-600 mb-1" id="labelCantidad">Cantidad (kg / unidades):</label>
-                <div class="flex gap-2">
-                    <input type="number" id="cantidadInput" step="0.1" min="0" placeholder="Ej: 1.5 o 2" 
-                        class="w-full px-3 py-2 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 text-lg font-bold text-pink-600 bg-pink-50/50">
-                    <button onclick="agregarAlCarrito()" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-2xl font-bold transition whitespace-nowrap shadow-sm">
-                        + Añadir
-                    </button>
-                </div>
-            </div>
-
-            <!-- Lista de Productos en el Carrito Actual -->
+            <!-- Carrito Actual -->
             <div class="border-t-2 border-pink-100 pt-3 mb-3">
                 <h3 class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2">Productos en esta venta:</h3>
-                <div id="carritoLista" class="space-y-2 max-h-44 overflow-y-auto pr-1">
-                    <p class="text-sm text-gray-400 italic text-center py-2">No hay productos agregados aún</p>
+                <div id="carritoLista" class="space-y-2 max-h-40 overflow-y-auto pr-1">
+                    <p class="text-sm text-gray-400 italic text-center py-2">No hay productos en el carrito</p>
                 </div>
             </div>
 
@@ -100,14 +88,14 @@
             </div>
         </div>
 
-        <!-- Sección de Gestión de Inventario (Alimentos y Accesorios con foto/emoji) -->
+        <!-- Sección de Gestión de Inventario (Subir foto de galería) -->
         <div class="bg-white rounded-3xl shadow-md p-4 border-2 border-pink-300">
             <h2 class="text-lg font-bold text-pink-700 mb-3 flex items-center gap-2">
-                <span>📦</span> Administrar Inventario
+                <span>📸</span> Agregar Nuevo Producto
             </h2>
             
             <div class="space-y-3 mb-4">
-                <input type="text" id="nuevoNombre" placeholder="Nombre (Ej: Collar / Perrarina)" 
+                <input type="text" id="nuevoNombre" placeholder="Nombre (Ej: Collar Antipulgas / Perrarina)" 
                     class="w-full px-3 py-2 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 text-sm bg-pink-50/50">
                 
                 <div class="grid grid-cols-2 gap-2">
@@ -119,17 +107,21 @@
                         class="w-full px-3 py-2 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 text-sm bg-pink-50/50">
                 </div>
 
-                <input type="text" id="nuevoImagen" placeholder="URL de Imagen o Emoji (Ej: 🐶 o https://...)" 
-                    class="w-full px-3 py-2 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 text-xs bg-pink-50/50">
+                <!-- Selector de Fotos de la Galería -->
+                <div>
+                    <label class="block text-xs font-bold text-pink-600 mb-1">Foto del Producto (Desde la galería o archivo):</label>
+                    <input type="file" id="nuevoImagenFile" accept="image/*" 
+                        class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200 cursor-pointer">
+                </div>
                 
                 <button onclick="agregarProductoInventario()" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2.5 rounded-2xl transition shadow-sm cursor-pointer">
-                    + Agregar al Inventario
+                    + Guardar en el Catálogo
                 </button>
             </div>
 
             <div class="border-t-2 border-pink-100 pt-3">
-                <h3 class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2">Inventario Registrado:</h3>
-                <div id="listaInventario" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                <h3 class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2">Administrar Productos Existentes:</h3>
+                <div id="listaInventarioGestion" class="space-y-2 max-h-40 overflow-y-auto pr-1">
                     <!-- Se llenan con JavaScript -->
                 </div>
             </div>
@@ -141,16 +133,15 @@
         
         let productos = JSON.parse(localStorage.getItem('productos')) || [
             { id: 1, nombre: '🐶 Perrarina Adulto', tipo: 'kg', precioBs: 90.00, img: '' },
-            { id: 2, nombre: '🐱 Gatarina Gato Adulto', tipo: 'kg', precioBs: 110.00, img: '' },
-            { id: 3, nombre: '🦴 Collar Ajustable Perro', tipo: 'unidad', precioBs: 180.00, img: '' },
+            { id: 2, nombre: '🐱 Gatarina Gato', tipo: 'kg', precioBs: 110.00, img: '' },
+            { id: 3, nombre: '🦴 Collar Ajustable', tipo: 'unidad', precioBs: 180.00, img: '' },
             { id: 4, nombre: '🎾 Pelota Juguete', tipo: 'unidad', precioBs: 130.00, img: '' }
         ];
 
         let carrito = [];
 
         document.getElementById('tasaDolar').value = tasa > 0 ? tasa : '';
-        renderizarInventario();
-        actualizarSelectProductos();
+        renderizarTodo();
 
         function guardarTasa() {
             let val = parseFloat(document.getElementById('tasaDolar').value);
@@ -174,93 +165,93 @@
             let nombre = document.getElementById('nuevoNombre').value.trim();
             let tipo = document.getElementById('nuevoTipo').value;
             let precioBs = parseFloat(document.getElementById('nuevoPrecioBs').value);
-            let img = document.getElementById('nuevoImagen').value.trim();
+            let fileInput = document.getElementById('nuevoImagenFile');
 
             if (!nombre || isNaN(precioBs) || precioBs <= 0) {
                 alert('Escribe un nombre y un precio válido en bolívares.');
                 return;
             }
 
-            productos.push({ id: Date.now(), nombre, tipo, precioBs, img });
+            if (fileInput.files && fileInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    guardarNuevoProductoFinal(nombre, tipo, precioBs, e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                guardarNuevoProductoFinal(nombre, tipo, precioBs, '');
+            }
+        }
+
+        function guardarNuevoProductoFinal(nombre, tipo, precioBs, imgData) {
+            productos.push({ id: Date.now(), nombre, tipo, precioBs, img: imgData });
             localStorage.setItem('productos', JSON.stringify(productos));
 
             document.getElementById('nuevoNombre').value = '';
             document.getElementById('nuevoPrecioBs').value = '';
-            document.getElementById('nuevoImagen').value = '';
+            document.getElementById('nuevoImagenFile').value = '';
 
-            renderizarInventario();
-            actualizarSelectProductos();
-            alert('¡Producto agregado al inventario!');
+            renderizarTodo();
+            alert('¡Producto agregado al catálogo con éxito! 🐾');
         }
 
         function eliminarProductoInventario(id) {
             productos = productos.filter(p => p.id !== id);
             localStorage.setItem('productos', JSON.stringify(productos));
-            renderizarInventario();
-            actualizarSelectProductos();
+            renderizarTodo();
         }
 
-        function renderizarInventario() {
-            let lista = document.getElementById('listaInventario');
-            lista.innerHTML = '';
-
-            productos.forEach(p => {
-                let item = document.createElement('div');
-                item.className = 'flex justify-between items-center bg-pink-50 p-2.5 rounded-2xl text-sm border-2 border-pink-200';
-                
-                let unidadTexto = p.tipo === 'kg' ? 'por kilo' : 'por unidad';
-                
-                item.innerHTML = `
-                    <div class="flex items-center gap-2">
-                        <span class="text-xl">🐾</span>
-                        <div>
-                            <span class="font-bold text-gray-700 block">${p.nombre}</span>
-                            <span class="text-xs text-pink-600 font-semibold">Bs. ${p.precioBs.toFixed(2)} (${unidadTexto})</span>
-                        </div>
-                    </div>
-                    <button type="button" onclick="eliminarProductoInventario(${p.id})" class="text-red-400 hover:text-red-600 font-bold px-2 py-1 text-xs cursor-pointer">🗑️</button>
-                `;
-                lista.appendChild(item);
-            });
+        function renderizarTodo() {
+            renderizarCatalogo();
+            renderizarInventarioGestion();
+            renderizarCarrito();
         }
 
-        function actualizarSelectProductos() {
-            let select = document.getElementById('productoSelect');
-            select.innerHTML = '<option value="">-- Elige un producto --</option>';
+        function renderizarCatalogo() {
+            let grid = document.getElementById('catalogoGrid');
+            grid.innerHTML = '';
 
-            productos.forEach(p => {
-                let opt = document.createElement('option');
-                opt.value = p.id;
-                opt.textContent = `${p.nombre} - Bs. ${p.precioBs.toFixed(2)}`;
-                select.appendChild(opt);
-            });
-            actualizarUnidadMedida();
-        }
-
-        function actualizarUnidadMedida() {
-            let productoId = document.getElementById('productoSelect').value;
-            let label = document.getElementById('labelCantidad');
-            let prod = productos.find(p => p.id == productoId);
-
-            if (!prod) {
-                label.textContent = 'Cantidad (kg / unidades):';
+            if (productos.length === 0) {
+                grid.innerHTML = '<p class="text-sm text-gray-400 italic col-span-2 text-center py-4">No hay productos en el catálogo</p>';
                 return;
             }
 
-            if (prod.tipo === 'kg') {
-                label.textContent = 'Cantidad en Kilos (kg):';
-            } else {
-                label.textContent = 'Cantidad en Unidades (Piezas):';
-            }
+            productos.forEach(p => {
+                let card = document.createElement('div');
+                card.className = 'bg-pink-50 border-2 border-pink-200 rounded-2xl p-2.5 flex flex-col justify-between shadow-sm hover:border-pink-400 transition';
+                
+                let imagenHtml = p.img 
+                    ? `<img src="${p.img}" class="w-full h-24 object-cover rounded-xl mb-2 border border-pink-200">`
+                    : `<div class="w-full h-24 bg-pink-100 rounded-xl mb-2 flex items-center justify-center text-3xl border border-pink-200">🐾</div>`;
+
+                let unidadTexto = p.tipo === 'kg' ? 'por kg' : 'c/u';
+
+                card.innerHTML = `
+                    <div>
+                        ${imagenHtml}
+                        <h4 class="font-bold text-gray-800 text-xs line-clamp-1">${p.nombre}</h4>
+                        <p class="text-xs text-pink-600 font-bold mb-2">Bs. ${p.precioBs.toFixed(2)} <span class="text-[10px] text-gray-500 font-normal">(${unidadTexto})</span></p>
+                    </div>
+                    <button onclick="pedirCantidadYAgregar(${p.id})" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-1.5 px-2 rounded-xl text-xs transition shadow-sm">
+                        + Añadir
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        function agregarAlCarrito() {
-            let productoId = document.getElementById('productoSelect').value;
-            let cantidad = parseFloat(document.getElementById('cantidadInput').value);
+        function pedirCantidadYAgregar(id) {
+            let prod = productos.find(p => p.id === id);
+            if (!prod) return;
 
-            let prod = productos.find(p => p.id == productoId);
-            if (!prod || isNaN(cantidad) || cantidad <= 0) {
-                alert('Selecciona un producto y escribe una cantidad mayor a 0.');
+            let labelMsg = prod.tipo === 'kg' ? `¿Cuántos kilos de ${prod.nombre} lleva el cliente?` : `¿Cuántas unidades de ${prod.nombre} lleva el cliente?`;
+            let cantidadStr = prompt(labelMsg, "1");
+            
+            if (cantidadStr === null) return;
+            let cantidad = parseFloat(cantidadStr);
+
+            if (isNaN(cantidad) || cantidad <= 0) {
+                alert('Cantidad inválida.');
                 return;
             }
 
@@ -275,7 +266,6 @@
                 subtotalBs: subtotalBs
             });
 
-            document.getElementById('cantidadInput').value = '';
             renderizarCarrito();
         }
 
@@ -289,7 +279,7 @@
             lista.innerHTML = '';
 
             if (carrito.length === 0) {
-                lista.innerHTML = '<p class="text-sm text-gray-400 italic text-center py-2">No hay productos agregados aún</p>';
+                lista.innerHTML = '<p class="text-sm text-gray-400 italic text-center py-2">No hay productos en el carrito</p>';
                 calcularTotalesCarrito();
                 return;
             }
@@ -297,12 +287,11 @@
             carrito.forEach(item => {
                 let div = document.createElement('div');
                 div.className = 'flex justify-between items-center bg-pink-50/80 p-2.5 rounded-2xl text-sm border-2 border-pink-200';
-                
                 let unidadLabel = item.tipo === 'kg' ? 'kg' : 'und';
 
                 div.innerHTML = `
                     <div>
-                        <span class="font-bold text-gray-800 block">${item.nombre}</span>
+                        <span class="font-bold text-gray-800 block text-xs">${item.nombre}</span>
                         <span class="text-xs text-gray-500">${item.cantidad} ${unidadLabel} × Bs. ${item.precioBs.toFixed(2)} = <b class="text-pink-600">Bs. ${item.subtotalBs.toFixed(2)}</b></span>
                     </div>
                     <button onclick="eliminarDelCarrito(${item.cartId})" class="text-red-400 hover:text-red-600 font-bold px-2 py-1 text-xs">❌</button>
@@ -311,6 +300,24 @@
             });
 
             calcularTotalesCarrito();
+        }
+
+        function renderizarInventarioGestion() {
+            let lista = document.getElementById('listaInventarioGestion');
+            lista.innerHTML = '';
+
+            productos.forEach(p => {
+                let item = document.createElement('div');
+                item.className = 'flex justify-between items-center bg-pink-50 p-2 rounded-2xl text-xs border border-pink-200';
+                item.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-gray-700">${p.nombre}</span>
+                        <span class="text-pink-600 font-semibold">Bs. ${p.precioBs.toFixed(2)}</span>
+                    </div>
+                    <button onclick="eliminarProductoInventario(${p.id})" class="text-red-400 hover:text-red-600 font-bold px-2 py-1">🗑️ Eliminar</button>
+                `;
+                lista.appendChild(item);
+            });
         }
 
         function calcularTotalesCarrito() {
@@ -345,7 +352,7 @@
                 }
             } else {
                 if (tasa <= 0) {
-                    vueltoText = '⚠️ Configure la tasa del dólar';
+                    vouncerText = '⚠️ Configure la tasa del dólar';
                 } else {
                     let pagoBsCalculado = pagoMonto * tasa;
                     let cambioBs = pagoBsCalculado - totalBs;
@@ -363,7 +370,7 @@
 
         function finalizarVenta() {
             if (carrito.length === 0) {
-                alert('Agrega al menos un producto al carrito para completar la venta.');
+                alert('Agrega al menos un producto al carrito.');
                 return;
             }
             alert('¡Venta registrada con éxito! 🐾');
